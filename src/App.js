@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import MovieApplication from "./components/MovieApplication";
+import AddMovieForm from "./components/AddMovieForm";
+import Movies from "./components/Movies";
+import Movie from "./components/Movie";
+import SaveMoviesButton from "./components/SaveMoviesButton";
+import OrderByAlphaButton from "./components/OrderByAlphaButton";
+import OrderByGradeButton from "./components/OrderByGradeButton";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="container">
+      <MovieApplication>
+        <AddMovieForm />
+
+        <Movies>
+          <Movie />
+          <Movie />
+        </Movies>
+
+        <SaveMoviesButton />
+        <OrderByAlphaButton />
+        <OrderByGradeButton />
+      </MovieApplication>
     </div>
   );
 }
