@@ -12,8 +12,6 @@ export default function AddMovieForm() {
     const titleRef = useRef();
     const gradeRef = useRef();
 
-
-
     function saveMovie(e) {
         e.preventDefault();
 
