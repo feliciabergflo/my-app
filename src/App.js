@@ -1,29 +1,15 @@
 import React from "react";
-import MovieApplication from "./components/MovieApplication";
-import AddMovieForm from "./components/AddMovieForm";
-import Movies from "./components/Movies";
-import Movie from "./components/Movie";
-import SaveMoviesButton from "./components/SaveMoviesButton";
-import OrderByAlphaButton from "./components/OrderByAlphaButton";
-import OrderByGradeButton from "./components/OrderByGradeButton";
+import AddMovieForm from "./AddMovieForm";
 
 function App() {
   return (
-    <div class="container">
-      <MovieApplication>
-        <AddMovieForm />
+    <div className="container">
+      <h1 className="mt-3">Min filmlista</h1>
 
-        <Movies>
-          <Movie />
-          <Movie />
-        </Movies>
+      <AddMovieForm />
 
-        <SaveMoviesButton />
-        <OrderByAlphaButton />
-        <OrderByGradeButton />
-      </MovieApplication>
     </div>
-  );
+  )
 }
 
 export default App;
