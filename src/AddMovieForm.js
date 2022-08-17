@@ -14,14 +14,16 @@ export default function AddMovieForm() {
 
 
 
-    function saveMovie() {
+    function saveMovie(e) {
+        e.preventDefault();
+
         const newId = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
         
         setMovies([...movies, {
             id: newId,
             title: titleRef.current.value,
             grade: gradeRef.current.value
-        }])
+        }]);
 
         titleRef.current.value = "";
         gradeRef.current.value ="0";
@@ -38,10 +40,10 @@ export default function AddMovieForm() {
                 <legend>Lägg till en film</legend>
 
                 <label for="title-field">Titel:</label>
-                <input type="text" id="title-field" className="form-control" />
+                <input type="text" ref={titleRef} id="title-field" className="form-control" />
             
                 <label for="rating-field">Betyg:</label>
-                <select type="text" id="rating-field" class="form-control">
+                <select type="text" ref={gradeRef} id="rating-field" class="form-control">
                     <option value="0">Välj betyg här...</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -50,7 +52,7 @@ export default function AddMovieForm() {
                     <option value="5">5</option>
                 </select>
 
-                <input type="submit" className="btn btn-success mt-3" value="Spara film" />
+                <input type="submit" onClick={saveMovie} className="btn btn-success mt-3" value="Spara film" />
             </fieldset>
             </form>
 
