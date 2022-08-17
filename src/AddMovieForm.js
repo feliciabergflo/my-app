@@ -17,16 +17,24 @@ export default function AddMovieForm() {
     function saveMovie(e) {
         e.preventDefault();
 
-        const newId = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
+        if (titleRef.current.value == "") {
+            alert("Du måste ange en titel för att kunna spara filmen");
+            return false;
+        } else if (gradeRef.current.value === "0") {
+            alert("Du måste ange ett betyg för att kunna spara filmen");
+            return false;
+        } else {
+            const newId = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
         
-        setMovies([...movies, {
-            id: newId,
-            title: titleRef.current.value,
-            grade: gradeRef.current.value
-        }]);
+            setMovies([...movies, {
+                id: newId,
+                title: titleRef.current.value,
+                grade: gradeRef.current.value
+            }]);
+        };
 
         titleRef.current.value = "";
-        gradeRef.current.value ="0";
+        gradeRef.current.value = "0";
     }
 
     function deleteMovie(id) {
