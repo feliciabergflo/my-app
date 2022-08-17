@@ -4,7 +4,7 @@ import AddMovieForm from "./AddMovieForm";
 function App() {
   return (
     <div className="container">
-      <h1 className="mt-3">Min filmlista</h1>
+      <h1>Min filmlista</h1>
 
       <AddMovieForm />
 
