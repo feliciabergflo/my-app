@@ -4,7 +4,11 @@ import MovieList from "./MovieList";
 
 export default function App() {
 
-  const [movies, setMovies] = useState([{}]);
+  const [movies, setMovies] = useState([{
+    id: 1,
+    title: "Titanic",
+    grade: 2
+  }]);
   
   const titleRef = useRef();
   const gradeRef = useRef();
@@ -59,8 +63,7 @@ export default function App() {
       <hr />
 
       <h2>Filmer</h2>
-      <MovieList />
-
+      <MovieList dataToMovielist={movies} />
 
     </div>
   )
