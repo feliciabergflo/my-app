@@ -1,19 +1,34 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react';
 import Movie from "./Movie";
 
-export default function MovieList(props) {
+export default function MovieList() {
 
     const [movies, setMovies] = useState([{
         id: 1,
         title: "Titanic",
         grade: 2
-        },
-        {
-        id: 2,
-        title: "A",
-        grade: 1
         }
     ]);
+    const [sortType, setSortType] = useState();
+
+    useEffect(() => {
+        const sortArray = type => {
+            const types = {
+                title: "title",
+                grade: "grade"
+            };
+            const sortProperty = types[type];
+            if (sortProperty == "title") {
+                const sorted = [...movies].sort((a, b) => a.title.localeCompare(b.title));
+                setMovies(sorted);
+            } else if (sortProperty == "grade") {
+                const sorted = [...movies].sort((a, b) => b.grade - a.grade);
+                setMovies(sorted);
+            }
+        };
+
+        sortArray(sortType);
+    }, [sortType]);
 
     const titleRef = useRef();
     const gradeRef = useRef();
@@ -45,18 +60,6 @@ export default function MovieList(props) {
         setMovies(movies.filter((movie) => movie.id !== id));
     }
 
-    function orderAlphabetic() {
-        setMovies(movies.sort(function(a,b) {
-            return b.title - a.title;
-        }))
-    }
-
-    function orderGrade() {
-        setMovies(movies.sort(function(a,b) {
-            return b.grade - a.grade;
-        }))
-    }
-
     return (
         <div className="container">
             <h1>Min filmlista</h1>
@@ -71,7 +74,7 @@ export default function MovieList(props) {
                 
                     <div className="form-group">
                         <label for="rating-field">Betyg:</label>
-                        <select type="text" ref={gradeRef} id="rating-field" class="form-control">
+                        <select type="text" ref={gradeRef} id="rating-field" className="form-control">
                             <option value="0">Välj betyg här...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -94,8 +97,8 @@ export default function MovieList(props) {
                 {movies.map(movie => <Movie key={movies.id} movie={movie} deleteMovie={deleteMovie} />)}
             </ul>
 
-            <button className="btn btn-primary" onClick={orderAlphabetic}>Alfabetisk ordning</button>
-            <button className="btn btn-primary" onClick={orderGrade}>Betygsordning</button>
+            <button className="btn btn-primary m-1" onClick={() => setSortType("title")}>Alfabetisk ordning</button>
+            <button className="btn btn-primary m-1" onClick={() => setSortType("grade")}>Betygsordning</button>
         </div>
     )
 }
